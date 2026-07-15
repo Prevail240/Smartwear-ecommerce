@@ -245,7 +245,7 @@
 }
 
 .successIcon {
-  color: #4CAF50;
+  color: var(--status-success);
   margin-bottom: 24px;
 }
 

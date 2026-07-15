@@ -41,7 +41,7 @@
 }
 
 .info {
-  border-left-color: #7367F0;
+  border-left-color: var(--accent-color);
 }
 
 @keyframes slideUpFade {

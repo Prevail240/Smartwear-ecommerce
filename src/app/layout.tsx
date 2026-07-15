@@ -7,6 +7,7 @@ import { WishlistProvider } from '@/context/WishlistContext';
 import { OrderProvider } from '@/context/OrderContext';
 import { AuthProvider } from '@/context/AuthContext';
 import { InboxProvider } from '@/context/InboxContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 import Header from '@/components/Header';
 import BottomNav from '@/components/BottomNav';
 import DashboardSidebar from '@/components/DashboardSidebar';
@@ -23,29 +24,51 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            try {
+              var theme = localStorage.getItem('app-theme') || 'system';
+              var accent = localStorage.getItem('app-accent') || 'blue';
+              var contrast = localStorage.getItem('app-contrast') === 'true';
+              
+              var effectiveTheme = theme;
+              if (theme === 'system') {
+                effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+              }
+              
+              document.documentElement.setAttribute('data-theme', effectiveTheme);
+              document.documentElement.setAttribute('data-accent', accent);
+              if (contrast) document.documentElement.setAttribute('data-contrast', 'high');
+            } catch (e) {}
+          `
+        }} />
+      </head>
       <body suppressHydrationWarning>
-        <AuthProvider>
-          <ToastProvider>
-            <WishlistProvider>
-              <CartProvider>
-                <OrderProvider>
-                  <InboxProvider>
-                    <SidebarProvider>
-                      <div className="app-container">
-                        <DashboardSidebar />
-                        <Header />
-                        <main style={{ flex: 1, paddingBottom: '20px' }}>
-                          {children}
-                        </main>
-                        <BottomNav />
-                      </div>
-                    </SidebarProvider>
-                  </InboxProvider>
-                </OrderProvider>
-              </CartProvider>
-            </WishlistProvider>
-          </ToastProvider>
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <ToastProvider>
+              <WishlistProvider>
+                <CartProvider>
+                  <OrderProvider>
+                    <InboxProvider>
+                      <SidebarProvider>
+                        <div className="app-container">
+                          <DashboardSidebar />
+                          <Header />
+                          <main style={{ flex: 1, paddingBottom: '20px' }}>
+                            {children}
+                          </main>
+                          <BottomNav />
+                        </div>
+                      </SidebarProvider>
+                    </InboxProvider>
+                  </OrderProvider>
+                </CartProvider>
+              </WishlistProvider>
+            </ToastProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

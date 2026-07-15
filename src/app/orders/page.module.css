@@ -118,11 +118,11 @@
   align-self: flex-start;
 }
 
-.statusProcessing { background: #FF9800; color: #fff; }
-.statusPickup { background: #2196F3; color: #fff; }
-.statusEnRoute { background: #9C27B0; color: #fff; }
-.statusDelivered { background: #4CAF50; color: #fff; }
-.statusCanceled { background: #F44336; color: #fff; }
+.statusProcessing { background: var(--status-warning); color: var(--text-primary); }
+.statusPickup { background: #2196F3; color: var(--text-primary); }
+.statusEnRoute { background: #9C27B0; color: var(--text-primary); }
+.statusDelivered { background: var(--status-success); color: var(--text-primary); }
+.statusCanceled { background: var(--status-error); color: var(--text-primary); }
 .statusDefault { background: var(--surface-elevated); color: var(--text-primary); }
 
 .deliveryEstimate {
@@ -157,8 +157,8 @@
 
 .cancelBtn {
   background: transparent;
-  color: #F44336;
-  border: 1px solid #F44336;
+  color: var(--status-error);
+  border: 1px solid var(--status-error);
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 0.8rem;
@@ -243,7 +243,7 @@
 }
 
 .promptActionBtn {
-  background: #F44336;
+  background: var(--status-error);
   color: white;
   border: none;
   padding: 12px 24px;

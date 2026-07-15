@@ -39,7 +39,7 @@
 }
 
 .errorIcon {
-  color: #F44336;
+  color: var(--status-error);
   margin-bottom: 24px;
 }
 

@@ -86,11 +86,11 @@
   margin-bottom: 8px;
 }
 
-.statusProcessing { background: #FF9800; color: #fff; }
-.statusPickup { background: #2196F3; color: #fff; }
-.statusEnRoute { background: #9C27B0; color: #fff; }
-.statusDelivered { background: #4CAF50; color: #fff; }
-.statusCanceled { background: #F44336; color: #fff; }
+.statusProcessing { background: var(--status-warning); color: var(--text-primary); }
+.statusPickup { background: #2196F3; color: var(--text-primary); }
+.statusEnRoute { background: #9C27B0; color: var(--text-primary); }
+.statusDelivered { background: var(--status-success); color: var(--text-primary); }
+.statusCanceled { background: var(--status-error); color: var(--text-primary); }
 .statusDefault { background: var(--surface-elevated); color: var(--text-primary); }
 
 .deliveryEstimate {

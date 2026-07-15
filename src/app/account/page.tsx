@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { User, Package, Heart, CreditCard, LogOut, BarChart2, ChevronDown, ChevronUp } from 'lucide-react';
+import { User, Package, Heart, CreditCard, LogOut, BarChart2, ChevronDown, ChevronUp, Palette, Settings } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -187,12 +187,16 @@ export default function AccountPage() {
           <span>My Orders</span>
         </Link>
         <Link href="/wishlist" className={styles.menuItem}>
-          <Heart size={24} className={styles.icon} />
+          <Heart size={20} className={styles.menuIcon} />
           <span>Wishlist</span>
         </Link>
-        <Link href="/account/checkout" className={styles.menuItem}>
-          <CreditCard size={24} className={styles.icon} />
-          <span>Checkout</span>
+        <Link href="/account/appearance" className={styles.menuItem}>
+          <Palette size={20} className={styles.menuIcon} />
+          <span>Appearance Settings</span>
+        </Link>
+        <Link href="/account" className={styles.menuItem}>
+          <Settings size={20} className={styles.menuIcon} />
+          <span>Account Settings</span>
         </Link>
         <button className={styles.menuItem} onClick={handleLogout}>
           <LogOut size={24} className={styles.icon} />

@@ -1,23 +1,92 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
 
-:root {
+:root, [data-theme="dark"] {
+  /* Default Body Outer Rim */
+  --body-bg: #000000;
+  
   /* Obsidian Theme */
   --bg-obsidian: #0B0C10;
   --surface-obsidian: #16181F;
   --surface-elevated: #1F2833;
   --surface-elevated-hover: #293441;
+  --border-color: #2D2E3D;
   
   /* Text */
   --text-primary: #FFFFFF;
   --text-secondary: #C5C6C7;
   --text-muted: #8A8D93;
   
-  /* Accent Gradient (Red-Orange to Blue) */
-  --accent-gradient: linear-gradient(135deg, #FF4B2B, #FF416C, #7367F0, #32CCBC);
-  --accent-color: #7367F0; /* Fallback */
+  /* Default Accent (Blue/Purple) */
+  --accent-color: #7367F0;
+  --accent-gradient: linear-gradient(135deg, #7367F0, #32CCBC);
+
+  /* Status Colors */
+  --status-success: #4CAF50;
+  --status-error: #F44336;
+  --status-warning: #FF9800;
 
   /* Structural */
   --app-max-width: 1200px;
+}
+
+[data-theme="light"] {
+  --body-bg: #E5E7EB;
+  --bg-obsidian: #F9FAFB;
+  --surface-obsidian: #FFFFFF;
+  --surface-elevated: #F3F4F6;
+  --surface-elevated-hover: #E5E7EB;
+  --border-color: #E5E7EB;
+  
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+}
+
+/* Accent Color Variations */
+[data-accent="blue"] {
+  --accent-color: #7367F0;
+  --accent-gradient: linear-gradient(135deg, #7367F0, #32CCBC);
+}
+[data-accent="red"] {
+  --accent-color: #FF416C;
+  --accent-gradient: linear-gradient(135deg, #FF4B2B, #FF416C);
+}
+[data-accent="orange"] {
+  --accent-color: #FF9800;
+  --accent-gradient: linear-gradient(135deg, #FF9800, #FFC107);
+}
+[data-accent="green"] {
+  --accent-color: #4CAF50;
+  --accent-gradient: linear-gradient(135deg, #4CAF50, #8BC34A);
+}
+[data-accent="dark"] {
+  --accent-color: #333333;
+  --accent-gradient: linear-gradient(135deg, #434343, #000000);
+}
+[data-accent="light"] {
+  --accent-color: #FFFFFF;
+  --accent-gradient: linear-gradient(135deg, #FFFFFF, #E5E7EB);
+}
+[data-theme="light"] [data-accent="light"] {
+  --accent-color: #111827;
+  --accent-gradient: linear-gradient(135deg, #111827, #4B5563);
+}
+
+/* High Contrast Modes */
+[data-contrast="high"][data-theme="light"] {
+  --bg-obsidian: #FFFFFF;
+  --surface-obsidian: #FFFFFF;
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --border-color: #000000;
+}
+
+[data-contrast="high"][data-theme="dark"] {
+  --bg-obsidian: #000000;
+  --surface-obsidian: #000000;
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFFFFF;
+  --border-color: #FFFFFF;
 }
 
 * {
@@ -27,7 +96,7 @@
 }
 
 body {
-  background-color: #000000; /* Darker than obsidian to frame the app container */
+  background-color: var(--body-bg); /* Controlled by theme */
   color: var(--text-primary);
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
