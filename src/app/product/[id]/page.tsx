@@ -55,6 +55,10 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   }, [user?.uid, product]);
 
   const handleAddToCart = () => {
+    if (!user) {
+      router.push('/auth/signin');
+      return;
+    }
     addToCart(product, 1, selectedSize);
     showToast(`Added ${product.name} to cart`, 'success');
     router.push('/cart');

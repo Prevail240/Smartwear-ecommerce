@@ -7,6 +7,7 @@ import { Minus, Plus, Trash2, X } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useToast } from '@/context/ToastContext';
+import { useAuth } from '@/context/AuthContext';
 import { Product } from '@/data/products';
 import styles from './page.module.css';
 
@@ -15,6 +16,7 @@ export default function CartPage() {
   const { cart, updateQuantity, toggleItemSelection, removeFromCart, cartTotal } = useCart();
   const { addToWishlist } = useWishlist();
   const { showToast } = useToast();
+  const { user } = useAuth();
   
   const [promptItem, setPromptItem] = useState<{ id: string, size: string, product: Product } | null>(null);
 
@@ -130,7 +132,13 @@ export default function CartPage() {
 
         <button 
           className={styles.checkoutBtn} 
-          onClick={() => router.push('/account/checkout')}
+          onClick={() => {
+            if (!user) {
+              router.push('/auth/signin');
+            } else {
+              router.push('/account/checkout');
+            }
+          }}
           disabled={cartTotal === 0}
         >
           Proceed to Checkout
@@ -147,6 +155,10 @@ export default function CartPage() {
             <button 
               className={styles.promptActionBtn} 
               onClick={() => {
+                 if (!user) {
+                   router.push('/auth/signin');
+                   return;
+                 }
                  addToWishlist(promptItem.product);
                  showToast(`Added to wishlist`, 'success');
                  setPromptItem(null);

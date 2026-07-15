@@ -1,9 +1,11 @@
 "use client";
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Star, ShoppingBag, Heart } from 'lucide-react';
 import { Product } from '@/data/products';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useToast } from '@/context/ToastContext';
 import styles from './ProductCard.module.css';
@@ -16,18 +18,28 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { showToast } = useToast();
+  const { user } = useAuth();
+  const router = useRouter();
   
   const inWishlist = isInWishlist(product.id);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!user) {
+      router.push('/auth/signin');
+      return;
+    }
     addToCart(product, 1, product.sizes?.[0] || 'One Size');
     showToast('Added to cart', 'success');
   };
 
   const handleToggleWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
+    if (!user) {
+      router.push('/auth/signin');
+      return;
+    }
     if (inWishlist) {
       removeFromWishlist(product.id);
       showToast(`Removed from wishlist`, 'info');

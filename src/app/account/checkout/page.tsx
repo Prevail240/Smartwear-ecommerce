@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { CheckCircle2, CreditCard, Smartphone, Landmark, ChevronLeft } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import { initiatePayment } from '@/app/actions/payment';
 import styles from './page.module.css';
 
@@ -13,6 +14,7 @@ function CheckoutContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { cartTotal, clearCart } = useCart();
+  const { user } = useAuth();
   const [currentStep, setCurrentStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState<{ id: string } | null>(null);
@@ -26,6 +28,14 @@ function CheckoutContent() {
       setOrderConfirmed({ id: order_id });
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/auth/signin');
+    }
+  }, [user, router]);
+
+  if (!user) return null;
 
   async function handleCheckout(formData: FormData) {
     setIsProcessing(true);
