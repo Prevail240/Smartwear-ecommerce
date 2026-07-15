@@ -187,15 +187,19 @@ export default function AccountPage() {
           <span>My Orders</span>
         </Link>
         <Link href="/wishlist" className={styles.menuItem}>
-          <Heart size={20} className={styles.menuIcon} />
+          <Heart size={24} className={styles.icon} />
           <span>Wishlist</span>
         </Link>
+        <Link href="/account/checkout" className={styles.menuItem}>
+          <CreditCard size={24} className={styles.icon} />
+          <span>Checkout</span>
+        </Link>
         <Link href="/account/appearance" className={styles.menuItem}>
-          <Palette size={20} className={styles.menuIcon} />
+          <Palette size={24} className={styles.icon} />
           <span>Appearance Settings</span>
         </Link>
         <Link href="/account" className={styles.menuItem}>
-          <Settings size={20} className={styles.menuIcon} />
+          <Settings size={24} className={styles.icon} />
           <span>Account Settings</span>
         </Link>
         <button className={styles.menuItem} onClick={handleLogout}>
