@@ -1,0 +1,272 @@
+.container {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: -8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.backBtn:hover {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+}
+
+.section {
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+/* Theme Cards */
+.themeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.themeCard {
+  background: var(--bg-obsidian);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.themeCard:hover {
+  border-color: var(--text-muted);
+}
+
+.themeCard.active {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 1px var(--accent-color);
+}
+
+.themeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.themeIcon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.activeBadge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  background: rgba(115, 103, 240, 0.1);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 12px;
+}
+
+.themeDesc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.previewWindow {
+  background: var(--surface-obsidian);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  height: 120px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.previewHeader {
+  display: flex;
+  gap: 8px;
+}
+
+.previewDot {
+  width: 24px;
+  height: 6px;
+  border-radius: 4px;
+  background: var(--surface-elevated);
+}
+
+.previewBody {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+}
+
+.previewContent {
+  flex: 1;
+  background: var(--surface-elevated);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.previewAccent {
+  height: 8px;
+  width: 60%;
+  background: var(--accent-gradient);
+  border-radius: 4px;
+}
+
+.previewSidebar {
+  width: 40px;
+  background: var(--surface-elevated);
+  border-radius: 4px;
+}
+
+/* Accent Colors */
+.accentGroup {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.accentTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.swatchRow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.swatch:hover {
+  transform: scale(1.1);
+}
+
+.swatch.active {
+  border-color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+/* Hardcode preview swatches to match data-accent names */
+.swatchBlue { background: linear-gradient(135deg, #7367F0, #32CCBC); }
+.swatchRed { background: linear-gradient(135deg, #FF4B2B, #FF416C); }
+.swatchOrange { background: linear-gradient(135deg, #FF9800, #FFC107); }
+.swatchGreen { background: linear-gradient(135deg, #4CAF50, #8BC34A); }
+.swatchDark { background: linear-gradient(135deg, #434343, #000000); border-color: #888; }
+.swatchLight { background: linear-gradient(135deg, #FFFFFF, #E5E7EB); border-color: #888; }
+
+/* Contrast Toggles */
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--surface-obsidian);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.toggleInfo h3 {
+  font-size: 1rem;
+  margin: 0 0 4px 0;
+}
+
+.toggleInfo p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--surface-elevated);
+  transition: .4s;
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--text-secondary);
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+  background-color: #fff;
+}
