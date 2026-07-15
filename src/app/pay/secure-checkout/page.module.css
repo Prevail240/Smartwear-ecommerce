@@ -1,0 +1,180 @@
+.gatewayContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f7f6;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.hostedBox {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.header {
+  background: #1a1b25;
+  padding: 24px;
+  color: white;
+  text-align: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.brand h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.brandIcon {
+  color: #4CAF50;
+}
+
+.securityText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+.orderSummary {
+  padding: 32px 24px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.merchantName {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.customerEmail {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.amountBox {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1b25;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+}
+
+.currency {
+  font-size: 1.2rem;
+  margin-top: 6px;
+  color: #666;
+}
+
+.form {
+  padding: 24px;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.inputGroup label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.inputWrapper .input {
+  padding-left: 42px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1a1b25;
+  box-shadow: 0 0 0 3px rgba(26, 27, 37, 0.1);
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.row .inputGroup {
+  flex: 1;
+}
+
+.payBtn {
+  width: 100%;
+  background: #1a1b25;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+.payBtn:hover:not(:disabled) {
+  background: #2d2e3d;
+}
+
+.payBtn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.footer {
+  background: #f9f9f9;
+  padding: 16px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #888;
+}

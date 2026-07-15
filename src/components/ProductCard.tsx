@@ -1,0 +1,77 @@
+"use client";
+
+import Link from 'next/link';
+import { Star, ShoppingBag, Heart } from 'lucide-react';
+import { Product } from '@/data/products';
+import { useCart } from '@/context/CartContext';
+import { useWishlist } from '@/context/WishlistContext';
+import { useToast } from '@/context/ToastContext';
+import styles from './ProductCard.module.css';
+
+interface ProductCardProps {
+  product: Product;
+}
+
+export default function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const { showToast } = useToast();
+  
+  const inWishlist = isInWishlist(product.id);
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product, 1, product.sizes?.[0] || 'One Size');
+    showToast('Added to cart', 'success');
+  };
+
+  const handleToggleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (inWishlist) {
+      removeFromWishlist(product.id);
+      showToast(`Removed from wishlist`, 'info');
+    } else {
+      addToWishlist(product);
+      showToast(`Added ${product.name} to wishlist`, 'success');
+    }
+  };
+
+  return (
+    <Link href={`/product/${product.id}`} className={styles.card}>
+      <div className={styles.imageContainer}>
+        <img src={product.image} alt={product.name} className={styles.image} />
+        <div className={styles.quickActions}>
+          <button 
+            className={`${styles.actionBtn} ${inWishlist ? styles.activeWishlist : ''}`} 
+            onClick={handleToggleWishlist}
+            aria-label="Toggle Wishlist"
+            data-tooltip={inWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
+          >
+            <Heart size={20} fill={inWishlist ? 'currentColor' : 'none'} />
+          </button>
+          <button 
+            className={styles.actionBtn} 
+            onClick={handleAddToCart}
+            aria-label="Add to Cart"
+            data-tooltip="Quick Add to Cart"
+          >
+            <ShoppingBag size={20} />
+          </button>
+        </div>
+      </div>
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <h3 className={styles.name}>{product.name}</h3>
+          <span className={styles.price}>${product.price.toFixed(2)}</span>
+        </div>
+        <p className={styles.category}>{product.category}</p>
+        <div className={styles.rating}>
+          <Star size={14} className={styles.starIcon} fill="currentColor" />
+          <span className={styles.ratingText}>{product.rating}</span>
+          <span className={styles.reviewsText}>({product.reviews})</span>
+        </div>
+      </div>
+    </Link>
+  );
+}

@@ -1,0 +1,249 @@
+.container {
+  padding: 16px;
+  max-width: var(--app-max-width);
+  margin: 0 auto;
+  padding-bottom: 64px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.orderSummaryHeader {
+  background: var(--surface-obsidian);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+}
+
+.orderNo {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.headerSub {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.headerTotal {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 12px;
+}
+
+.sectionTitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.itemCard {
+  background: var(--surface-obsidian);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.itemHeader {
+  margin-bottom: 16px;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.statusProcessing { background: #FF9800; color: #fff; }
+.statusPickup { background: #2196F3; color: #fff; }
+.statusEnRoute { background: #9C27B0; color: #fff; }
+.statusDelivered { background: #4CAF50; color: #fff; }
+.statusCanceled { background: #F44336; color: #fff; }
+.statusDefault { background: var(--surface-elevated); color: var(--text-primary); }
+
+.deliveryEstimate {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.itemBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .itemBody {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.itemImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: var(--surface-elevated);
+}
+
+.itemInfo {
+  flex: 1;
+}
+
+.itemName {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.itemSub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.priceRow {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.price {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.originalPrice {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-size: 0.9rem;
+}
+
+.itemAction {
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .itemAction {
+    margin-top: 0;
+  }
+}
+
+.trackBtn {
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .trackBtn {
+    width: auto;
+    min-width: 150px;
+  }
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .infoGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.infoCard {
+  background: var(--surface-obsidian);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.infoBlock {
+  margin-bottom: 24px;
+}
+
+.infoBlock:last-child {
+  margin-bottom: 0;
+}
+
+.infoTitle {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.infoText {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.infoSubText {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+
+.costRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.costTotal {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+}

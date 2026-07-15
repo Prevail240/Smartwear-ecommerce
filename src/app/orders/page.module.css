@@ -1,0 +1,259 @@
+.container {
+  padding: 16px;
+  max-width: var(--app-max-width);
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.tabsContainer {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 12px 0;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.tabBtn:hover {
+  color: var(--text-primary);
+}
+
+.activeTab {
+  color: var(--accent-color);
+}
+
+.activeTab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orderCard {
+  background: var(--surface-obsidian);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .orderCard {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.cardLeft {
+  flex-shrink: 0;
+}
+
+.productImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--surface-elevated);
+}
+
+.cardMid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.productName {
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.orderNo {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.size {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  align-self: flex-start;
+}
+
+.statusProcessing { background: #FF9800; color: #fff; }
+.statusPickup { background: #2196F3; color: #fff; }
+.statusEnRoute { background: #9C27B0; color: #fff; }
+.statusDelivered { background: #4CAF50; color: #fff; }
+.statusCanceled { background: #F44336; color: #fff; }
+.statusDefault { background: var(--surface-elevated); color: var(--text-primary); }
+
+.deliveryEstimate {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.cardRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .cardRight {
+    align-items: flex-end;
+  }
+}
+
+.detailsLink {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.detailsLink:hover {
+  text-decoration: underline;
+}
+
+.cancelBtn {
+  background: transparent;
+  color: #F44336;
+  border: 1px solid #F44336;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.cancelBtn:hover {
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 48px;
+  color: var(--text-secondary);
+  background: var(--surface-obsidian);
+  border-radius: 8px;
+}
+
+.promptOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.promptBox {
+  background: var(--surface-obsidian);
+  padding: 32px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 360px;
+  width: 90%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  position: relative;
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.closePromptBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closePromptBtn:hover {
+  color: var(--text-primary);
+}
+
+.promptTitle {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.promptText {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.promptActionBtn {
+  background: #F44336;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s;
+}
+
+.promptActionBtn:hover {
+  opacity: 0.9;
+}
