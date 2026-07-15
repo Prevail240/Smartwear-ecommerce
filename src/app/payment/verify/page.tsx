@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Loader2, AlertCircle } from 'lucide-react';
 import { verifyPayment } from '@/app/actions/payment';
@@ -14,7 +14,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import styles from './page.module.css';
 
-export default function PaymentVerifyPage() {
+function PaymentVerifyContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { cart, cartTotal, clearCart } = useCart();
@@ -152,5 +152,13 @@ export default function PaymentVerifyPage() {
         <p className={styles.loadingText}>Please do not close or refresh this page. We are securely verifying your transaction.</p>
       </div>
     </div>
+  );
+}
+
+export default function PaymentVerifyPage() {
+  return (
+    <Suspense fallback={<div style={{padding: '4rem', textAlign: 'center'}}>Verifying...</div>}>
+      <PaymentVerifyContent />
+    </Suspense>
   );
 }

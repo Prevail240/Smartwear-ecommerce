@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Lock, ShieldCheck, CreditCard } from 'lucide-react';
 import styles from './page.module.css';
 
-export default function SecureCheckout() {
+function SecureCheckoutContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -96,5 +96,13 @@ export default function SecureCheckout() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SecureCheckout() {
+  return (
+    <Suspense fallback={<div style={{padding: '4rem', textAlign: 'center'}}>Loading secure gateway...</div>}>
+      <SecureCheckoutContent />
+    </Suspense>
   );
 }
