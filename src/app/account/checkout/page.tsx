@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { CheckCircle2, CreditCard, Smartphone, Landmark, ChevronLeft } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
@@ -9,7 +9,7 @@ import styles from './page.module.css';
 
 const steps = ['Shipping', 'Payment', 'Review'];
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { cartTotal, clearCart } = useCart();
@@ -178,5 +178,13 @@ export default function CheckoutPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div style={{padding: '4rem', textAlign: 'center', color: '#888'}}>Loading checkout securely...</div>}>
+      <CheckoutContent />
+    </Suspense>
   );
 }
