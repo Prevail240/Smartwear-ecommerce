@@ -34,7 +34,7 @@
 
 .navItem.active .icon {
   color: var(--accent-color); /* We could use gradient here, but text/SVG gradients are tricky, using fallback */
-  stroke: url(transparentntGradient) var(--accent-color);
+  stroke: url(#accentGradient) var(--accent-color);
 }
 
 @media (min-width: 768px) {
