@@ -47,8 +47,8 @@
 }
 
 .heroBtn {
-  background: var(--surface-elevated);
-  color: var(--text-primary);
+  background: #FF8C00;
+  color: #FFFFFF;
   padding: 14px 28px;
   border-radius: 8px;
   font-family: 'Montserrat', sans-serif;
@@ -57,17 +57,13 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   width: fit-content;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
+  border: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.heroBtn::before {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(to right, #FF4B2B, #FF416C);
+.heroBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 .section {
