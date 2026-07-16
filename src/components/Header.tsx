@@ -102,9 +102,18 @@ export default function Header() {
   const { cartCount } = useCart();
   const { wishlist } = useWishlist();
   const { openSidebar } = useSidebar();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.topRow}>
         <button className={styles.iconBtnMobile} onClick={openSidebar} data-tooltip="Menu" data-tooltip-bottom>
           <Menu size={24} />

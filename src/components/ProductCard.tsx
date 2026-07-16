@@ -24,6 +24,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const router = useRouter();
   
   const inWishlist = isInWishlist(product.id);
+  const [animatingWishlist, setAnimatingWishlist] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -48,13 +49,18 @@ export default function ProductCard({ product }: ProductCardProps) {
     } else {
       addToWishlist(product);
       showToast(`Added ${product.name} to wishlist`, 'success');
+      setAnimatingWishlist(true);
+      setTimeout(() => setAnimatingWishlist(false), 300);
     }
   };
 
   return (
     <Link href={`/product/${product.id}`} className={styles.card}>
       <div className={styles.imageContainer}>
-        <img src={product.image} alt={product.name} className={styles.image} />
+        <img src={product.images?.[0] || product.image} alt={product.name} className={styles.primaryImage} />
+        {product.images?.length > 1 && (
+          <img src={product.images[1]} alt={product.name} className={styles.secondaryImage} />
+        )}
       </div>
       <div className={styles.quickActions}>
         <button 
@@ -63,7 +69,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           aria-label="Toggle Wishlist"
           data-tooltip={inWishlist ? "Remove from Wishlist" : "Quick Add to Wishlist"}
         >
-          <Heart size={20} fill={inWishlist ? 'currentColor' : 'none'} />
+          <Heart size={20} fill={inWishlist ? 'currentColor' : 'none'} className={animatingWishlist ? styles.iconPop : ''} />
         </button>
         <button 
           className={styles.actionBtn} 

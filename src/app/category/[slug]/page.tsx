@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import { SlidersHorizontal, X } from 'lucide-react';
 import { useProducts } from '@/context/ProductContext';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { animate, stagger } from 'motion';
+import { useEffect } from 'react';
 import ProductCard from '@/components/ProductCard';
 import styles from './page.module.css';
 
@@ -33,6 +35,16 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
     ? products 
     : products.filter(p => p.category === category);
 
+  useEffect(() => {
+    if (!loading && filteredProducts.length > 0) {
+      animate(
+        '.product-card-stagger',
+        { opacity: [0, 1], y: [30, 0] } as any,
+        { delay: stagger(0.08), duration: 0.5, ease: [0.25, 1, 0.5, 1] }
+      );
+    }
+  }, [loading, category]);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -47,7 +59,9 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
 
       <div className={styles.productGrid} ref={animationParent}>
         {filteredProducts.map(product => (
-          <ProductCard key={product.id} product={product} />
+          <div key={product.id} className="product-card-stagger" style={{ opacity: 0 }}>
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
 
