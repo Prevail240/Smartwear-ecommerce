@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Home, Grid, Heart, Package, Inbox, User, X, ChevronDown, ChevronUp, ShoppingBag, LogOut } from 'lucide-react';
 import { useSidebar } from '@/context/SidebarContext';
@@ -51,8 +52,9 @@ export default function DashboardSidebar() {
         onTouchEnd={handleTouchEnd}
       >
         <div className={styles.header}>
-          <Link href="/" className={styles.logo} onClick={closeSidebar}>
-            SMARTWEAR
+          <Link href="/" className={styles.logoWrapper} onClick={closeSidebar}>
+            <Image src="/logo.jpg" alt="Smartwear Logo" width={32} height={32} className={styles.logoImg} />
+            <span className={styles.logo}>SMARTWEAR</span>
           </Link>
           <button className={styles.closeBtn} onClick={closeSidebar} data-tooltip="Close menu" data-tooltip-bottom>
             <X size={24} />

@@ -40,6 +40,18 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logoImg {
+  border-radius: 6px;
+  object-fit: cover;
+}
+
 .logo {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;

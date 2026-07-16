@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ShoppingBag, Search, Menu } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
@@ -104,8 +105,9 @@ export default function Header() {
         <button className={styles.iconBtnMobile} onClick={openSidebar} data-tooltip="Menu" data-tooltip-bottom>
           <Menu size={24} />
         </button>
-        <Link href="/" className={styles.logo}>
-          <span className={styles.logoText}>SMARTWEAR</span>
+        <Link href="/" className={styles.logoWrapper}>
+          <Image src="/logo.jpg" alt="Smartwear Logo" width={32} height={32} className={styles.logoImg} />
+          <span className={styles.logo}>SMARTWEAR</span>
         </Link>
         <nav className={styles.desktopNav}>
           <Link href="/category/all" className={styles.navLink}>Shop</Link>

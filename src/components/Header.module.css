@@ -14,6 +14,18 @@
   gap: 24px;
 }
 
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logoImg {
+  border-radius: 6px;
+  object-fit: cover;
+}
+
 .logo {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
