@@ -35,13 +35,13 @@
   font-size: 1.8rem;
   line-height: 1.1;
   margin-bottom: 8px;
-  color: var(--text-primary);
+  color: #FFFFFF;
   width: fit-content;
 }
 
 .heroSub {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: #FFFDD0;
   margin-bottom: 20px;
   max-width: 70%;
 }
