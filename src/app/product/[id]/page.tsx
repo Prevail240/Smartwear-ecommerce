@@ -7,6 +7,7 @@ import { useProducts } from '@/context/ProductContext';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/context/ToastContext';
 import { useAuth } from '@/context/AuthContext';
+import { useCurrency } from '@/context/CurrencyContext';
 import { doc, getDoc, setDoc, updateDoc, increment } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import styles from './page.module.css';
@@ -20,6 +21,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const product = products.find(p => p.id === unwrappedParams.id);
   
   const { user } = useAuth();
+  const { formatPrice } = useCurrency();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || 'One Size');
 
@@ -120,7 +122,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       <div className={styles.details}>
         <div className={styles.titleRow}>
           <h1 className={styles.title}>{product.name}</h1>
-          <span className={styles.price}>${product.price.toFixed(2)}</span>
+          <span className={styles.price}>{formatPrice(product.price)}</span>
         </div>
         
         <div className={styles.ratingRow}>
@@ -175,7 +177,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       {/* Sticky CTA */}
       <div className={styles.stickyCta}>
         <button className={styles.addToCartBtn} onClick={handleAddToCart}>
-          Add to Cart - ${product.price.toFixed(2)}
+          Add to Cart - {formatPrice(product.price)}
         </button>
       </div>
     </div>

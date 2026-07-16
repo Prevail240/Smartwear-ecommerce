@@ -8,6 +8,7 @@ import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useToast } from '@/context/ToastContext';
 import { useAuth } from '@/context/AuthContext';
+import { useCurrency } from '@/context/CurrencyContext';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Product } from '@/data/products';
 import styles from './page.module.css';
@@ -18,6 +19,7 @@ export default function CartPage() {
   const { addToWishlist } = useWishlist();
   const { showToast } = useToast();
   const { user } = useAuth();
+  const { formatPrice } = useCurrency();
   const [animationParent] = useAutoAnimate<HTMLDivElement>();
   
   const [promptItem, setPromptItem] = useState<{ id: string, size: string, product: Product } | null>(null);
@@ -34,7 +36,7 @@ export default function CartPage() {
     return desc;
   };
 
-  const SHIPPING_COST = cartTotal > 0 ? 15.00 : 0;
+  const SHIPPING_COST = cartTotal > 0 ? 22500 : 0;
   const FINAL_TOTAL = cartTotal + SHIPPING_COST;
 
   if (cart.length === 0) {
@@ -80,7 +82,7 @@ export default function CartPage() {
             <div className={styles.itemMid}>
               <h3 className={styles.itemName}>{item.product.name}</h3>
               <p className={styles.itemDesc}>{truncateDesc(item.product.description)}</p>
-              <span className={styles.itemPrice}>${item.product.price.toFixed(2)}</span>
+              <span className={styles.itemPrice}>{formatPrice(item.product.price)}</span>
               <p className={styles.itemSize}>Size: {item.selectedSize}</p>
             </div>
 
@@ -116,19 +118,19 @@ export default function CartPage() {
         
         <div className={styles.summaryRow}>
           <span className={styles.summaryLabel}>Subtotal</span>
-          <span className={styles.summaryValue}>${cartTotal.toFixed(2)}</span>
+          <span className={styles.summaryValue}>{formatPrice(cartTotal)}</span>
         </div>
         
         <div className={styles.summaryRow}>
           <span className={styles.summaryLabel}>Estimated Shipping</span>
-          <span className={styles.summaryValue}>${SHIPPING_COST.toFixed(2)}</span>
+          <span className={styles.summaryValue}>{formatPrice(SHIPPING_COST)}</span>
         </div>
         
         <div className={styles.divider} />
         
         <div className={styles.summaryRowTotal}>
           <span>Total</span>
-          <span>${FINAL_TOTAL.toFixed(2)}</span>
+          <span>{formatPrice(FINAL_TOTAL)}</span>
         </div>
 
         <button 

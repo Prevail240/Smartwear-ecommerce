@@ -4,10 +4,12 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { useOrders } from '@/context/OrderContext';
+import { useCurrency } from '@/context/CurrencyContext';
 import styles from './page.module.css';
 
 export default function OrderDetailsPage({ params }: { params: { id: string } }) {
   const { orders } = useOrders();
+  const { formatPrice } = useCurrency();
   const order = orders.find(o => o.id === params.id);
 
   if (!order) {
@@ -38,7 +40,7 @@ export default function OrderDetailsPage({ params }: { params: { id: string } })
         <h2 className={styles.orderNo}>Order n° {order.id}</h2>
         <p className={styles.headerSub}>{order.items.length} Items</p>
         <p className={styles.headerSub}>Placed on {order.date}</p>
-        <p className={styles.headerTotal}>Total: ₦ {order.total.toLocaleString()}</p>
+        <p className={styles.headerTotal}>Total: {formatPrice(order.total)}</p>
       </div>
 
       <div className={styles.section}>
@@ -60,9 +62,9 @@ export default function OrderDetailsPage({ params }: { params: { id: string } })
                   <p className={styles.itemSub}>Size: {item.size}</p>
                   <p className={styles.itemSub}>QTY: {item.quantity}</p>
                   <div className={styles.priceRow}>
-                    <span className={styles.price}>₦ {item.price.toLocaleString()}</span>
+                    <span className={styles.price}>{formatPrice(item.price)}</span>
                     {item.originalPrice && (
-                      <span className={styles.originalPrice}>₦ {item.originalPrice.toLocaleString()}</span>
+                      <span className={styles.originalPrice}>{formatPrice(item.originalPrice)}</span>
                     )}
                   </div>
                 </div>
@@ -88,15 +90,15 @@ export default function OrderDetailsPage({ params }: { params: { id: string } })
             <h4 className={styles.infoTitle}>Payment Details</h4>
             <div className={styles.costRow}>
               <span>Items total:</span>
-              <span>₦ {order.paymentDetails.itemsTotal.toLocaleString()}</span>
+              <span>{formatPrice(order.paymentDetails.itemsTotal)}</span>
             </div>
             <div className={styles.costRow}>
               <span>Delivery Fees:</span>
-              <span>₦ {order.paymentDetails.deliveryFees.toLocaleString()}</span>
+              <span>{formatPrice(order.paymentDetails.deliveryFees)}</span>
             </div>
             <div className={`${styles.costRow} ${styles.costTotal}`}>
               <span>Total:</span>
-              <span>₦ {order.total.toLocaleString()}</span>
+              <span>{formatPrice(order.total)}</span>
             </div>
           </div>
         </div>

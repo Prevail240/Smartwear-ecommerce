@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { CheckCircle2, CreditCard, Smartphone, Landmark, ChevronLeft } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
+import { useCurrency } from '@/context/CurrencyContext';
 import { initiatePayment } from '@/app/actions/payment';
 import styles from './page.module.css';
 
@@ -15,11 +16,13 @@ function CheckoutContent() {
   const searchParams = useSearchParams();
   const { cartTotal, clearCart } = useCart();
   const { user } = useAuth();
+  const { formatPrice } = useCurrency();
   const [currentStep, setCurrentStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState<{ id: string } | null>(null);
 
-  const FINAL_TOTAL = cartTotal + 15.00;
+  const SHIPPING_COST = 22500;
+  const FINAL_TOTAL = cartTotal + SHIPPING_COST;
 
   useEffect(() => {
     const success = searchParams.get('success');
@@ -146,16 +149,16 @@ function CheckoutContent() {
             <div className={styles.summaryCard}>
               <div className={styles.summaryRow}>
                 <span>Subtotal</span>
-                <span>${cartTotal.toFixed(2)}</span>
+                <span>{formatPrice(cartTotal)}</span>
               </div>
               <div className={styles.summaryRow}>
                 <span>Shipping</span>
-                <span>$15.00</span>
+                <span>{formatPrice(SHIPPING_COST)}</span>
               </div>
               <div className={styles.divider} />
               <div className={styles.summaryRowTotal}>
                 <span>Total</span>
-                <span>${FINAL_TOTAL.toFixed(2)}</span>
+                <span>{formatPrice(FINAL_TOTAL)}</span>
               </div>
             </div>
 

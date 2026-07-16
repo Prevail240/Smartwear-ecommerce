@@ -36,7 +36,7 @@ export const mockOrders: Order[] = [
   {
     id: '1624381746',
     date: '07-07-2026',
-    total: 15060,
+    total: 22590000,
     items: [
       {
         id: 'i1',
@@ -45,8 +45,8 @@ export const mockOrders: Order[] = [
         image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
         size: 'M',
         quantity: 1,
-        price: 45.00,
-        originalPrice: 55.00,
+        price: 67500,
+        originalPrice: 82500,
         status: 'AVAILABLE FOR PICKUP',
         deliveryEstimate: 'Delivered between Tuesday 14 July and Wednesday 15 July'
       },
@@ -57,16 +57,16 @@ export const mockOrders: Order[] = [
         image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
         size: 'L',
         quantity: 1,
-        price: 65.00,
-        originalPrice: 80.00,
+        price: 97500,
+        originalPrice: 120000,
         status: 'PROCESSING',
         deliveryEstimate: 'Delivered between Monday 13 July and Tuesday 14 July'
       }
     ],
     paymentMethod: 'Go Cashless: Pay on Delivery via bank transfer',
     paymentDetails: {
-      itemsTotal: 110.00,
-      deliveryFees: 15.00
+      itemsTotal: 165000,
+      deliveryFees: 22500
     },
     deliveryMethod: 'Pick-up Station',
     deliveryAddress: {
@@ -82,7 +82,7 @@ export const mockOrders: Order[] = [
   {
     id: '1624381747',
     date: '05-07-2026',
-    total: 299.99,
+    total: 449985,
     items: [
       {
         id: 'i3',
@@ -91,15 +91,15 @@ export const mockOrders: Order[] = [
         image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
         size: 'One Size',
         quantity: 1,
-        price: 299.99,
+        price: 449985,
         status: 'DELIVERED',
         deliveryEstimate: 'Delivered on 06 July'
       }
     ],
     paymentMethod: 'Credit / Debit Card',
     paymentDetails: {
-      itemsTotal: 299.99,
-      deliveryFees: 0.00
+      itemsTotal: 449985,
+      deliveryFees: 0
     },
     deliveryMethod: 'Home Delivery',
     deliveryAddress: {

@@ -9,6 +9,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import { InboxProvider } from '@/context/InboxContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { ProductProvider } from '@/context/ProductContext';
+import { CurrencyProvider } from '@/context/CurrencyContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DashboardSidebar from '@/components/DashboardSidebar';
@@ -54,16 +55,18 @@ export default function RootLayout({
                   <OrderProvider>
                     <ProductProvider>
                       <InboxProvider>
-                        <SidebarProvider>
-                          <div className="app-container">
-                            <DashboardSidebar />
-                            <Header />
+                        <CurrencyProvider>
+                          <SidebarProvider>
+                            <div className="app-container">
+                              <DashboardSidebar />
+                              <Header />
                             <main style={{ flex: 1, paddingBottom: '20px' }}>
                               {children}
                             </main>
-                            <Footer />
-                          </div>
-                        </SidebarProvider>
+                              <Footer />
+                            </div>
+                          </SidebarProvider>
+                        </CurrencyProvider>
                       </InboxProvider>
                     </ProductProvider>
                   </OrderProvider>

@@ -8,6 +8,7 @@ import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useToast } from '@/context/ToastContext';
+import { useCurrency } from '@/context/CurrencyContext';
 import styles from './ProductCard.module.css';
 
 interface ProductCardProps {
@@ -19,6 +20,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { showToast } = useToast();
   const { user } = useAuth();
+  const { formatPrice } = useCurrency();
   const router = useRouter();
   
   const inWishlist = isInWishlist(product.id);
@@ -75,7 +77,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className={styles.content}>
         <div className={styles.header}>
           <h3 className={styles.name}>{product.name}</h3>
-          <span className={styles.price}>${product.price.toFixed(2)}</span>
+          <span className={styles.price}>{formatPrice(product.price)}</span>
         </div>
         <p className={styles.category}>{product.category}</p>
         <div className={styles.rating}>
