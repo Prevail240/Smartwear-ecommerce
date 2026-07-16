@@ -156,7 +156,7 @@ export default function CartPage() {
             <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
               <button 
                 className={styles.promptActionBtn} 
-                style={{ flex: 1 }}
+                style={{ flex: 1, background: '#FF8C00', color: '#fff', border: 'none' }}
                 onClick={() => {
                    if (!user) {
                      router.push('/auth/signin');
@@ -172,14 +172,14 @@ export default function CartPage() {
               </button>
               <button 
                 className={styles.promptActionBtn} 
-                style={{ flex: 1, backgroundColor: 'var(--surface-elevated)', color: 'var(--text-primary)', border: '1px solid rgba(255,255,255,0.1)' }}
+                style={{ flex: 1, background: '#ef4444', color: '#fff', border: 'none' }}
                 onClick={() => {
                    removeFromCart(promptItem.id, promptItem.size);
                    showToast(`Removed from cart`, 'success');
                    setPromptItem(null);
                 }}
               >
-                Just Remove
+                Confirm Remove
               </button>
             </div>
           </div>
