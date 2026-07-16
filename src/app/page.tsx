@@ -4,11 +4,23 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { animate, inView, stagger } from 'motion';
 import { useProducts } from '@/context/ProductContext';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
 import styles from './page.module.css';
 
 export default function Home() {
   const { products, loading } = useProducts();
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const handleShopNow = () => {
+    if (user) {
+      router.push('/category/all');
+    } else {
+      router.push('/auth/signin');
+    }
+  };
 
   if (loading) {
     return (
@@ -46,11 +58,15 @@ export default function Home() {
           className={styles.heroImage} 
         />
         <div className={styles.heroContent}>
-          <h1 className={`${styles.heroTitle} hero-animate`} style={{opacity: 0}}>THE OBSIDIAN<br/>COLLECTION</h1>
-          <p className={`${styles.heroSub} hero-animate`} style={{opacity: 0}}>Engineered for elite performance.</p>
-          <Link href="/category/all" className={`${styles.heroBtn} hero-animate`} style={{opacity: 0}}>
+          <h1 className={`${styles.heroTitle} hero-animate`} style={{opacity: 0}}>
+            THE <span style={{ color: '#D4AF37' }}>LUXE</span><br/>COLLECTION
+          </h1>
+          <p className={`${styles.heroSub} hero-animate`} style={{opacity: 0}}>
+            Everyday <span style={{ color: '#D4AF37' }}>Luxury</span>
+          </p>
+          <button onClick={handleShopNow} className={`${styles.heroBtn} hero-animate`} style={{opacity: 0}}>
             Shop Now
-          </Link>
+          </button>
         </div>
       </section>
 
