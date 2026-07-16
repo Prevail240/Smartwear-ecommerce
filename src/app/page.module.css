@@ -151,7 +151,9 @@
 
 @media (min-width: 768px) {
   .hero {
-    height: 500px;
+    height: 85vh;
+    min-height: 500px;
+    max-height: 900px;
   }
   .heroTitle {
     font-size: 3rem;
