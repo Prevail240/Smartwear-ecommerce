@@ -26,7 +26,7 @@
   --status-warning: #FF9800;
 
   /* Structural */
-  --app-max-width: 1200px;
+  --app-max-width: 100%;
 }
 
 [data-theme="light"] {

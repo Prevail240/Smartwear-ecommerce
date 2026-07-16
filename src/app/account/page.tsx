@@ -227,13 +227,12 @@ export default function AccountPage() {
               <Mail size={20} className={styles.icon} />
               <span>Reset Email</span>
             </button>
+            <button className={styles.subMenuItem} onClick={handleLogout}>
+              <LogOut size={20} className={styles.icon} />
+              <span>Sign Out</span>
+            </button>
           </div>
         )}
-
-        <button className={styles.menuItem} onClick={handleLogout}>
-          <LogOut size={24} className={styles.icon} />
-          <span>Sign Out</span>
-        </button>
       </div>
     </div>
   );
