@@ -70,6 +70,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   }, [user?.uid, product]);
 
   const handleAddToCart = () => {
+    if (!product) return;
     if (!user) {
       router.push('/auth/signin');
       return;
