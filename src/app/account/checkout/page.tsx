@@ -21,7 +21,7 @@ function CheckoutContent() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState<{ id: string } | null>(null);
 
-  const SHIPPING_COST = 22500;
+  const SHIPPING_COST = cartTotal * 0.01;
   const FINAL_TOTAL = cartTotal + SHIPPING_COST;
 
   useEffect(() => {

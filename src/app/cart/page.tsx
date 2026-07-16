@@ -36,7 +36,7 @@ export default function CartPage() {
     return desc;
   };
 
-  const SHIPPING_COST = cartTotal > 0 ? 22500 : 0;
+  const SHIPPING_COST = cartTotal * 0.01;
   const FINAL_TOTAL = cartTotal + SHIPPING_COST;
 
   if (cart.length === 0) {
