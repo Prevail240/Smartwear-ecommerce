@@ -8,6 +8,7 @@ import { auth, db } from '@/lib/firebase';
 interface UserProfile {
   name: string;
   email: string;
+  role?: 'customer' | 'admin';
 }
 
 interface AuthContextType {
@@ -36,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setProfile(userDoc.data() as UserProfile);
           } else {
             // Fallback if no document exists yet
-            setProfile({ name: currentUser.displayName || 'User', email: currentUser.email || '' });
+            setProfile({ name: currentUser.displayName || 'User', email: currentUser.email || '', role: 'customer' });
           }
         } catch (error) {
           console.error("Error fetching user profile:", error);

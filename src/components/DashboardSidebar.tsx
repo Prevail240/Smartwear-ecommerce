@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Home, Grid, Heart, Package, Inbox, User, X, ChevronDown, ChevronUp, ShoppingBag, LogOut } from 'lucide-react';
+import { Home, Grid, Heart, Package, Inbox, User, X, ChevronDown, ChevronUp, ShoppingBag, LogOut, Shield } from 'lucide-react';
 import { useSidebar } from '@/context/SidebarContext';
 import { useInbox } from '@/context/InboxContext';
 import { useAuth } from '@/context/AuthContext';
@@ -135,6 +135,13 @@ export default function DashboardSidebar() {
                 <User size={20} />
                 <span>Account</span>
               </Link>
+              
+              {profile?.role === 'admin' && (
+                <Link href="/admin" className={`${styles.navItem} ${pathname.includes('/admin') ? styles.active : ''}`} onClick={closeSidebar}>
+                  <Shield size={20} />
+                  <span>Admin Panel</span>
+                </Link>
+              )}
               <button 
                 className={styles.navItem} 
                 onClick={() => {
