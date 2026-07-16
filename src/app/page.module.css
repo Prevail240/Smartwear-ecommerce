@@ -24,7 +24,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right, rgba(11, 12, 16, 0.9), rgba(11, 12, 16, 0.2));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,15 +35,13 @@
   font-size: 1.8rem;
   line-height: 1.1;
   margin-bottom: 8px;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #FFFFFF;
   width: fit-content;
 }
 
 .heroSub {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: #E0E0E0;
   margin-bottom: 20px;
   max-width: 70%;
 }
