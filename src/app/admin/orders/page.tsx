@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import AdminRoute from '@/components/AdminRoute';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Order, OrderStatus } from '@/data/orders';
 import { useToast } from '@/context/ToastContext';
 import styles from './page.module.css';
@@ -11,6 +12,7 @@ import styles from './page.module.css';
 export default function AdminOrders() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
+  const [animationParent] = useAutoAnimate<HTMLTableSectionElement>();
   const { showToast } = useToast();
 
   useEffect(() => {
@@ -71,7 +73,7 @@ export default function AdminOrders() {
                 <th>Total</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody ref={animationParent}>
               {orders.map(order => (
                 <tr key={order.id}>
                   <td>#{order.id}</td>

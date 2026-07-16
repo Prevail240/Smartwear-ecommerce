@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from 'react';
 import Link from 'next/link';
+import { animate, inView, stagger } from 'motion';
 import { useProducts } from '@/context/ProductContext';
 import ProductCard from '@/components/ProductCard';
 import styles from './page.module.css';
@@ -18,6 +20,22 @@ export default function Home() {
 
   const newArrivals = products.slice(0, 4);
 
+  useEffect(() => {
+    // Hero Animations
+    animate('.hero-animate', 
+      { opacity: [0, 1], y: [20, 0] }, 
+      { duration: 0.8, delay: stagger(0.2) }
+    );
+
+    // Scroll Animations
+    inView('.section-animate', (info) => {
+      animate(info.target, 
+        { opacity: [0, 1], y: [30, 0] },
+        { duration: 0.6, easing: [0.17, 0.55, 0.55, 1] }
+      );
+    });
+  }, [loading]);
+
   return (
     <div className={styles.container}>
       {/* Hero Banner */}
@@ -28,16 +46,16 @@ export default function Home() {
           className={styles.heroImage} 
         />
         <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>THE OBSIDIAN<br/>COLLECTION</h1>
-          <p className={styles.heroSub}>Engineered for elite performance.</p>
-          <Link href="/category/all" className={styles.heroBtn}>
+          <h1 className={`${styles.heroTitle} hero-animate`} style={{opacity: 0}}>THE OBSIDIAN<br/>COLLECTION</h1>
+          <p className={`${styles.heroSub} hero-animate`} style={{opacity: 0}}>Engineered for elite performance.</p>
+          <Link href="/category/all" className={`${styles.heroBtn} hero-animate`} style={{opacity: 0}}>
             Shop Now
           </Link>
         </div>
       </section>
 
       {/* Shoes Category */}
-      <section className={styles.section}>
+      <section className={`${styles.section} section-animate`} style={{opacity: 0}}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Premium Shoes</h2>
           <Link href="/category/shoes" className={styles.viewAll}>View All</Link>
@@ -50,7 +68,7 @@ export default function Home() {
       </section>
 
       {/* Apparel Category */}
-      <section className={styles.section}>
+      <section className={`${styles.section} section-animate`} style={{opacity: 0}}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Performance Apparel</h2>
           <Link href="/category/apparel" className={styles.viewAll}>View All</Link>
@@ -63,7 +81,7 @@ export default function Home() {
       </section>
 
       {/* Watches Category */}
-      <section className={styles.section}>
+      <section className={`${styles.section} section-animate`} style={{opacity: 0}}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Smart Watches</h2>
           <Link href="/category/watches" className={styles.viewAll}>View All</Link>

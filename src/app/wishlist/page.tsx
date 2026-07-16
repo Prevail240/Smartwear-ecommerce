@@ -7,6 +7,7 @@ import { useWishlist } from '@/context/WishlistContext';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Product } from '@/data/products';
 import { Heart } from 'lucide-react';
 import styles from './page.module.css';
@@ -17,6 +18,7 @@ export default function WishlistPage() {
   const { showToast } = useToast();
   const { user } = useAuth();
   const router = useRouter();
+  const [animationParent] = useAutoAnimate<HTMLDivElement>();
 
   useEffect(() => {
     if (!user) {
@@ -50,7 +52,7 @@ export default function WishlistPage() {
           </Link>
         </div>
       ) : (
-        <div className={styles.listContainer}>
+        <div className={styles.listContainer} ref={animationParent}>
           {wishlist.map(product => (
             <div className={styles.listItem} key={product.id}>
               <Link href={`/product/${product.id}`} className={styles.imageContainer}>

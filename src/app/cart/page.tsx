@@ -8,6 +8,7 @@ import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useToast } from '@/context/ToastContext';
 import { useAuth } from '@/context/AuthContext';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Product } from '@/data/products';
 import styles from './page.module.css';
 
@@ -17,6 +18,7 @@ export default function CartPage() {
   const { addToWishlist } = useWishlist();
   const { showToast } = useToast();
   const { user } = useAuth();
+  const [animationParent] = useAutoAnimate<HTMLDivElement>();
   
   const [promptItem, setPromptItem] = useState<{ id: string, size: string, product: Product } | null>(null);
 
@@ -53,7 +55,7 @@ export default function CartPage() {
     <div className={styles.container}>
       <h1 className={styles.title}>Your Cart</h1>
 
-      <div className={styles.cartList}>
+      <div className={styles.cartList} ref={animationParent}>
         {cart.map((item, idx) => (
           <div key={`${item.product.id}-${item.selectedSize}-${idx}`} className={styles.cartItem}>
             <div className={styles.checkboxWrapper}>

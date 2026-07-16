@@ -4,6 +4,7 @@ import { useState, use } from 'react';
 import { notFound } from 'next/navigation';
 import { SlidersHorizontal, X } from 'lucide-react';
 import { useProducts } from '@/context/ProductContext';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import ProductCard from '@/components/ProductCard';
 import styles from './page.module.css';
 
@@ -11,6 +12,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const unwrappedParams = use(params);
   const category = unwrappedParams.slug;
+  const [animationParent] = useAutoAnimate<HTMLDivElement>();
   
   const { products, loading } = useProducts();
 
@@ -43,7 +45,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
         </button>
       </div>
 
-      <div className={styles.productGrid}>
+      <div className={styles.productGrid} ref={animationParent}>
         {filteredProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

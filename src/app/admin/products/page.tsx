@@ -4,6 +4,7 @@ import { useState } from 'react';
 import AdminRoute from '@/components/AdminRoute';
 import { useProducts } from '@/context/ProductContext';
 import { useToast } from '@/context/ToastContext';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Plus, Trash2, X, Edit } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { doc, setDoc, deleteDoc, collection } from 'firebase/firestore';
@@ -13,6 +14,7 @@ import styles from './page.module.css';
 export default function AdminProducts() {
   const { products, loading } = useProducts();
   const { showToast } = useToast();
+  const [animationParent] = useAutoAnimate<HTMLTableSectionElement>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -102,7 +104,7 @@ export default function AdminProducts() {
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody ref={animationParent}>
               {products.map(product => (
                 <tr key={product.id}>
                   <td>
