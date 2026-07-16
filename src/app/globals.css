@@ -261,6 +261,10 @@ input, textarea, select {
   transform: translateX(-50%) translateY(-8px) scale(1);
 }
 
+[data-tooltip]:hover {
+  z-index: 999999;
+}
+
 /* For elements near the top, tooltip appears below */
 [data-tooltip-bottom]::before {
   bottom: auto;
