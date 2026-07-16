@@ -6,11 +6,11 @@ import styles from './Toast.module.css';
 interface Toast {
   id: string;
   message: string;
-  type: 'success' | 'info';
+  type: 'success' | 'info' | 'error';
 }
 
 interface ToastContextType {
-  showToast: (message: string, type?: 'success' | 'info') => void;
+  showToast: (message: string, type?: 'success' | 'info' | 'error') => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -18,7 +18,7 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined);
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const showToast = useCallback((message: string, type: 'success' | 'info' = 'success') => {
+  const showToast = useCallback((message: string, type: 'success' | 'info' | 'error' = 'success') => {
     const id = Math.random().toString(36).substr(2, 9);
     setToasts((prev) => [...prev, { id, message, type }]);
 
