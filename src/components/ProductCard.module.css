@@ -5,6 +5,7 @@
   border-radius: 16px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
+  height: 100%;
 }
 
 .card:hover {
@@ -86,6 +87,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  flex: 1;
 }
 
 .header {
@@ -144,7 +146,7 @@
 }
 
 .fullWidthAddBtn {
-  margin-top: 12px;
+  margin-top: auto;
   width: 100%;
   display: flex;
   align-items: center;
