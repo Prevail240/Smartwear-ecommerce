@@ -15,7 +15,7 @@
 }
 
 .tableContainer {
-  background: var(--surface-secondary);
+  background: var(--surface-elevated);
   border-radius: 8px;
   overflow-x: auto;
 }

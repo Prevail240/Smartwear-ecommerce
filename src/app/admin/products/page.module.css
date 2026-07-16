@@ -37,7 +37,7 @@
 
 /* Table Styles */
 .tableContainer {
-  background: var(--surface-secondary);
+  background: var(--surface-elevated);
   border-radius: 8px;
   overflow-x: auto;
 }
@@ -106,7 +106,7 @@
 }
 
 .modalContent {
-  background: var(--surface-secondary);
+  background: var(--surface-obsidian);
   width: 100%;
   max-width: 600px;
   border-radius: 12px;
