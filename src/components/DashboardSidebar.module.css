@@ -45,7 +45,7 @@
   font-weight: 800;
   font-size: 1.2rem;
   letter-spacing: 1px;
-  color: #FFFFFF;
+  color: var(--text-primary);
 }
 
 .closeBtn {

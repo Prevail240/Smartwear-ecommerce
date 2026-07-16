@@ -19,7 +19,7 @@
   font-weight: 800;
   font-size: 1.25rem;
   letter-spacing: 2px;
-  color: #FFFFFF;
+  color: var(--text-primary);
   flex-shrink: 0;
 }
 
