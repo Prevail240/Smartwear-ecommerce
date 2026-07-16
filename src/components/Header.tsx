@@ -123,7 +123,7 @@ export default function Header() {
           <SearchBar />
           <Link href="/wishlist" className={styles.iconBtn} data-tooltip="Wishlist" data-tooltip-bottom>
             <div className={styles.cartIconWrapper}>
-              <Heart size={24} />
+              <Heart size={24} color={wishlist.length > 0 ? "#FF8C00" : "rgba(255, 140, 0, 0.4)"} />
               {wishlist.length > 0 && (
                 <span className={styles.badge}>{wishlist.length}</span>
               )}
@@ -131,7 +131,7 @@ export default function Header() {
           </Link>
           <Link href="/cart" className={styles.iconBtn} data-tooltip="View Cart" data-tooltip-bottom>
             <div className={styles.cartIconWrapper}>
-              <ShoppingBag size={24} />
+              <ShoppingBag size={24} color={cartCount > 0 ? "#D4AF37" : "rgba(212, 175, 55, 0.4)"} />
               {cartCount > 0 && (
                 <span className={styles.badge}>{cartCount}</span>
               )}
