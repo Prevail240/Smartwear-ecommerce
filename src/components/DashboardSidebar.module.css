@@ -64,6 +64,30 @@
   color: var(--text-muted);
 }
 
+.profileSection {
+  width: 100%;
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileName {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.signInBtn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
 .nav {
   padding: 24px 16px;
   flex: 1;

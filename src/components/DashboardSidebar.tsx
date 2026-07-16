@@ -76,8 +76,6 @@ export default function DashboardSidebar() {
         )}
 
         <nav className={styles.nav}>
-          <h3 className={styles.navLabel}>DASHBOARD</h3>
-          
           <Link href="/" className={`${styles.navItem} ${pathname === '/' ? styles.active : ''}`} onClick={closeSidebar}>
             <Home size={20} />
             <span>Home</span>
