@@ -4,8 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ShoppingBag, Search, Menu } from 'lucide-react';
+import { ShoppingBag, Search, Menu, Heart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { useWishlist } from '@/context/WishlistContext';
 import { useSidebar } from '@/context/SidebarContext';
 import { Product } from '@/data/products';
 import { useProducts } from '@/context/ProductContext';
@@ -99,6 +100,7 @@ function SearchBar({ isMobile = false }: { isMobile?: boolean }) {
 
 export default function Header() {
   const { cartCount } = useCart();
+  const { wishlist } = useWishlist();
   const { openSidebar } = useSidebar();
 
   return (
@@ -119,6 +121,14 @@ export default function Header() {
         </nav>
         <div className={styles.actions}>
           <SearchBar />
+          <Link href="/wishlist" className={styles.iconBtn} data-tooltip="Wishlist" data-tooltip-bottom>
+            <div className={styles.cartIconWrapper}>
+              <Heart size={24} />
+              {wishlist.length > 0 && (
+                <span className={styles.badge}>{wishlist.length}</span>
+              )}
+            </div>
+          </Link>
           <Link href="/cart" className={styles.iconBtn} data-tooltip="View Cart" data-tooltip-bottom>
             <div className={styles.cartIconWrapper}>
               <ShoppingBag size={24} />
