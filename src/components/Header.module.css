@@ -99,7 +99,7 @@
 .searchContainerDesktop {
   display: none;
   position: relative;
-  width: 210px;
+  width: 260px;
 }
 
 .searchContainerMobile {
@@ -122,7 +122,7 @@
   font-weight: bold;
   padding: 10px 16px 10px 44px;
   border-radius: 20px;
-  font-size: 7px;
+  font-size: 10px;
   transition: all 0.3s ease;
   border: 1px solid transparent;
 }

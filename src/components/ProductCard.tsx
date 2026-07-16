@@ -53,24 +53,24 @@ export default function ProductCard({ product }: ProductCardProps) {
     <Link href={`/product/${product.id}`} className={styles.card}>
       <div className={styles.imageContainer}>
         <img src={product.image} alt={product.name} className={styles.image} />
-        <div className={styles.quickActions}>
-          <button 
-            className={`${styles.actionBtn} ${inWishlist ? styles.activeWishlist : ''}`} 
-            onClick={handleToggleWishlist}
-            aria-label="Toggle Wishlist"
-            data-tooltip={inWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
-          >
-            <Heart size={20} fill={inWishlist ? 'currentColor' : 'none'} />
-          </button>
-          <button 
-            className={styles.actionBtn} 
-            onClick={handleAddToCart}
-            aria-label="Add to Cart"
-            data-tooltip="Quick Add to Cart"
-          >
-            <ShoppingBag size={20} />
-          </button>
-        </div>
+      </div>
+      <div className={styles.quickActions}>
+        <button 
+          className={`${styles.actionBtn} ${inWishlist ? styles.activeWishlist : ''}`} 
+          onClick={handleToggleWishlist}
+          aria-label="Toggle Wishlist"
+          data-tooltip={inWishlist ? "Remove from Wishlist" : "Quick Add to Wishlist"}
+        >
+          <Heart size={20} fill={inWishlist ? 'currentColor' : 'none'} />
+        </button>
+        <button 
+          className={styles.actionBtn} 
+          onClick={handleAddToCart}
+          aria-label="Add to Cart"
+          data-tooltip="Quick Add to Cart"
+        >
+          <ShoppingBag size={20} />
+        </button>
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
