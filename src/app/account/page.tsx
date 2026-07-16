@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { User, Package, Heart, CreditCard, LogOut, BarChart2, ChevronDown, ChevronUp, Palette, Settings } from 'lucide-react';
+import { User, Package, Heart, CreditCard, LogOut, BarChart2, ChevronDown, ChevronUp, Palette, Settings, Key, Mail } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -118,8 +118,18 @@ export default function AccountPage() {
   }, [user?.uid, isAnalyticsExpanded]);
 
   const handleLogout = async () => {
-    await logout();
-    router.push('/auth/signin');
+    if (window.confirm('Are you sure you want to sign out?')) {
+      await logout();
+      router.push('/auth/signin');
+    }
+  };
+
+  const handleResetPassword = () => {
+    window.alert('Password reset link sent to your email!');
+  };
+
+  const handleResetEmail = () => {
+    window.alert('Verification link sent to update your email address.');
   };
 
   return (
@@ -202,9 +212,17 @@ export default function AccountPage() {
           <Settings size={24} className={styles.icon} />
           <span>Account Settings</span>
         </Link>
+        <button className={styles.menuItem} onClick={handleResetPassword}>
+          <Key size={24} className={styles.icon} />
+          <span>Reset Password</span>
+        </button>
+        <button className={styles.menuItem} onClick={handleResetEmail}>
+          <Mail size={24} className={styles.icon} />
+          <span>Reset Email</span>
+        </button>
         <button className={styles.menuItem} onClick={handleLogout}>
           <LogOut size={24} className={styles.icon} />
-          <span>Log Out</span>
+          <span>Sign Out</span>
         </button>
       </div>
     </div>

@@ -138,8 +138,10 @@ export default function DashboardSidebar() {
               <button 
                 className={styles.navItem} 
                 onClick={() => {
-                  logout();
-                  closeSidebar();
+                  if (window.confirm('Are you sure you want to sign out?')) {
+                    logout();
+                    closeSidebar();
+                  }
                 }}
               >
                 <LogOut size={20} />

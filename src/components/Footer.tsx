@@ -13,9 +13,9 @@ export default function Footer() {
           </p>
         </div>
         
-        <div className={styles.section}>
+        <div className={styles.section} style={{ textAlign: 'center' }}>
           <h3>Legal</h3>
-          <ul className={styles.links}>
+          <ul className={styles.links} style={{ alignItems: 'center' }}>
             <li><Link href="/terms">Terms &amp; Conditions</Link></li>
             <li><Link href="/privacy">Privacy Policy</Link></li>
           </ul>
