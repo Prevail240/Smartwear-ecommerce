@@ -41,7 +41,7 @@ export default function Home() {
       {/* Hero Banner */}
       <section className={styles.hero}>
         <img 
-          src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+          src="/images/hero-bg.jpg" 
           alt="Premium Activewear" 
           className={styles.heroImage} 
         />
