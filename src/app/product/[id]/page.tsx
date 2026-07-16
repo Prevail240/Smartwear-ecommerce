@@ -41,6 +41,11 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     notFound();
   }
 
+  // TypeScript needs this explicit return because it doesn't know notFound() throws
+  if (!product) {
+    return null;
+  }
+
   // Track product view in Firestore for real-time analytics
   useEffect(() => {
     if (user?.uid && product) {
