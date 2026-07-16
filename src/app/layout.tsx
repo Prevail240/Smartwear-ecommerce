@@ -9,7 +9,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import { InboxProvider } from '@/context/InboxContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import Header from '@/components/Header';
-import BottomNav from '@/components/BottomNav';
+import Footer from '@/components/Footer';
 import DashboardSidebar from '@/components/DashboardSidebar';
 
 export const metadata: Metadata = {
@@ -59,7 +59,7 @@ export default function RootLayout({
                           <main style={{ flex: 1, paddingBottom: '20px' }}>
                             {children}
                           </main>
-                          <BottomNav />
+                          <Footer />
                         </div>
                       </SidebarProvider>
                     </InboxProvider>

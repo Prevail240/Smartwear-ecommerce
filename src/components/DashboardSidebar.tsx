@@ -6,7 +6,7 @@ import { Home, Grid, Heart, Package, Inbox, User, X, ChevronDown, ChevronUp, Sho
 import { useSidebar } from '@/context/SidebarContext';
 import { useInbox } from '@/context/InboxContext';
 import { useAuth } from '@/context/AuthContext';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styles from './DashboardSidebar.module.css';
 
 export default function DashboardSidebar() {
@@ -16,12 +16,40 @@ export default function DashboardSidebar() {
   const pathname = usePathname();
   const [categoriesOpen, setCategoriesOpen] = useState(false);
 
+  // Swipe to close logic
+  const touchStartX = useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStartX.current) return;
+    const currentX = e.touches[0].clientX;
+    const diff = touchStartX.current - currentX;
+    
+    // If swiped left by more than 50px, close sidebar
+    if (diff > 50) {
+      closeSidebar();
+      touchStartX.current = null;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    touchStartX.current = null;
+  };
+
   return (
     <>
       {/* Overlay for mobile */}
       {isOpen && <div className={styles.overlay} onClick={closeSidebar}></div>}
 
-      <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+      <aside 
+        className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className={styles.header}>
           <Link href="/" className={styles.logo} onClick={closeSidebar}>
             SMARTWEAR

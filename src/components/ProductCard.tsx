@@ -83,6 +83,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className={styles.ratingText}>{product.rating}</span>
           <span className={styles.reviewsText}>({product.reviews})</span>
         </div>
+        <button 
+          className={styles.fullWidthAddBtn} 
+          onClick={handleAddToCart}
+          aria-label="Add to Cart"
+        >
+          <ShoppingBag size={16} />
+          <span>Add to Cart</span>
+        </button>
       </div>
     </Link>
   );
