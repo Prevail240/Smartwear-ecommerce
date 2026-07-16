@@ -142,6 +142,7 @@ export default function DashboardSidebar() {
               )}
               <button 
                 className={styles.navItem} 
+                style={{ color: '#ef4444' }}
                 onClick={() => {
                   if (window.confirm('Are you sure you want to sign out?')) {
                     logout();
@@ -149,7 +150,7 @@ export default function DashboardSidebar() {
                   }
                 }}
               >
-                <LogOut size={20} />
+                <LogOut size={20} color="#ef4444" />
                 <span>Sign Out</span>
               </button>
             </>

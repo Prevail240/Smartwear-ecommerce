@@ -227,8 +227,8 @@ export default function AccountPage() {
               <Mail size={20} className={styles.icon} />
               <span>Reset Email</span>
             </button>
-            <button className={styles.subMenuItem} onClick={handleLogout}>
-              <LogOut size={20} className={styles.icon} />
+            <button className={styles.subMenuItem} onClick={handleLogout} style={{ color: '#ef4444' }}>
+              <LogOut size={20} className={styles.icon} color="#ef4444" />
               <span>Sign Out</span>
             </button>
           </div>

@@ -23,7 +23,6 @@ export default function CartPage() {
   const [promptItem, setPromptItem] = useState<{ id: string, size: string, product: Product } | null>(null);
 
   const handleRemove = (id: string, size: string, product: Product) => {
-    removeFromCart(id, size);
     setPromptItem({ id, size, product });
   };
 
@@ -153,21 +152,36 @@ export default function CartPage() {
             <button className={styles.promptClose} onClick={() => setPromptItem(null)}>
               <X size={20} />
             </button>
-            <p className={styles.promptText}>Move <strong>{promptItem.product.name}</strong> to your wishlist?</p>
-            <button 
-              className={styles.promptActionBtn} 
-              onClick={() => {
-                 if (!user) {
-                   router.push('/auth/signin');
-                   return;
-                 }
-                 addToWishlist(promptItem.product);
-                 showToast(`Added to wishlist`, 'success');
-                 setPromptItem(null);
-              }}
-            >
-              Add to Wishlist
-            </button>
+            <p className={styles.promptText}>Do you want to save <strong>{promptItem.product.name}</strong> to your wishlist before removing?</p>
+            <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
+              <button 
+                className={styles.promptActionBtn} 
+                style={{ flex: 1 }}
+                onClick={() => {
+                   if (!user) {
+                     router.push('/auth/signin');
+                     return;
+                   }
+                   addToWishlist(promptItem.product);
+                   removeFromCart(promptItem.id, promptItem.size);
+                   showToast(`Moved to wishlist`, 'success');
+                   setPromptItem(null);
+                }}
+              >
+                Save to Wishlist
+              </button>
+              <button 
+                className={styles.promptActionBtn} 
+                style={{ flex: 1, backgroundColor: 'var(--surface-elevated)', color: 'var(--text-primary)', border: '1px solid rgba(255,255,255,0.1)' }}
+                onClick={() => {
+                   removeFromCart(promptItem.id, promptItem.size);
+                   showToast(`Removed from cart`, 'success');
+                   setPromptItem(null);
+                }}
+              >
+                Just Remove
+              </button>
+            </div>
           </div>
         </div>
       )}
