@@ -28,10 +28,10 @@ export default function Home() {
     );
 
     // Scroll Animations
-    inView('.section-animate', (info) => {
-      animate(info.target, 
-        { opacity: [0, 1], y: [30, 0] },
-        { duration: 0.6, easing: [0.17, 0.55, 0.55, 1] }
+    inView('.section-animate', (element) => {
+      animate(element, 
+        { opacity: [0, 1], y: [30, 0] } as any,
+        { duration: 0.6, ease: [0.17, 0.55, 0.55, 1] }
       );
     });
   }, [loading]);
