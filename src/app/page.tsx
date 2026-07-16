@@ -1,10 +1,22 @@
+"use client";
+
 import Link from 'next/link';
-import { products } from '@/data/products';
+import { useProducts } from '@/context/ProductContext';
 import ProductCard from '@/components/ProductCard';
 import styles from './page.module.css';
 
 export default function Home() {
-  const newArrivals = products.slice(0, 4); // Just mock data
+  const { products, loading } = useProducts();
+
+  if (loading) {
+    return (
+      <div className={styles.container} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ color: 'var(--text-muted)' }}>Loading products...</p>
+      </div>
+    );
+  }
+
+  const newArrivals = products.slice(0, 4);
 
   return (
     <div className={styles.container}>

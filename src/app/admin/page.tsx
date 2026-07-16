@@ -1,6 +1,7 @@
 "use client";
 
 import AdminRoute from '@/components/AdminRoute';
+import Link from 'next/link';
 import styles from './page.module.css';
 
 export default function AdminDashboard() {
@@ -11,14 +12,14 @@ export default function AdminDashboard() {
         <p className={styles.subtitle}>Welcome to the control center.</p>
         
         <div className={styles.grid}>
-          <div className={styles.card}>
+          <Link href="/admin/products" className={styles.card}>
             <h3>Products</h3>
             <p>Manage inventory, add new items.</p>
-          </div>
-          <div className={styles.card}>
+          </Link>
+          <Link href="/admin/orders" className={styles.card}>
             <h3>Orders</h3>
             <p>View and update customer orders.</p>
-          </div>
+          </Link>
         </div>
       </div>
     </AdminRoute>

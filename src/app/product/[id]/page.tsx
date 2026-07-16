@@ -3,7 +3,7 @@
 import { useState, use, useEffect } from 'react';
 import { notFound, useRouter } from 'next/navigation';
 import { ChevronLeft, Star, ShieldCheck, Truck } from 'lucide-react';
-import { products } from '@/data/products';
+import { useProducts } from '@/context/ProductContext';
 import { useCart } from '@/context/CartContext';
 import { useToast } from '@/context/ToastContext';
 import { useAuth } from '@/context/AuthContext';
@@ -15,16 +15,31 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const router = useRouter();
   const { addToCart } = useCart();
   const { showToast } = useToast();
+  const { products, loading } = useProducts();
   const unwrappedParams = use(params);
   const product = products.find(p => p.id === unwrappedParams.id);
   
-  if (!product) {
-    notFound();
-  }
-
   const { user } = useAuth();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+  const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || 'One Size');
+
+  useEffect(() => {
+    if (product && !selectedSize) {
+      setSelectedSize(product.sizes[0]);
+    }
+  }, [product, selectedSize]);
+
+  if (loading) {
+    return (
+      <div className={styles.container} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ color: 'var(--text-muted)' }}>Loading product...</p>
+      </div>
+    );
+  }
+
+  if (!product && !loading) {
+    notFound();
+  }
 
   // Track product view in Firestore for real-time analytics
   useEffect(() => {

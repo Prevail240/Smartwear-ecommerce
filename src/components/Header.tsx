@@ -7,7 +7,8 @@ import { useRouter } from 'next/navigation';
 import { ShoppingBag, Search, Menu } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useSidebar } from '@/context/SidebarContext';
-import { products, Product } from '@/data/products';
+import { Product } from '@/data/products';
+import { useProducts } from '@/context/ProductContext';
 import styles from './Header.module.css';
 
 function SearchBar({ isMobile = false }: { isMobile?: boolean }) {
@@ -16,6 +17,7 @@ function SearchBar({ isMobile = false }: { isMobile?: boolean }) {
   const [results, setResults] = useState<Product[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const { products } = useProducts();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

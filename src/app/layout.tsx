@@ -8,6 +8,7 @@ import { OrderProvider } from '@/context/OrderContext';
 import { AuthProvider } from '@/context/AuthContext';
 import { InboxProvider } from '@/context/InboxContext';
 import { ThemeProvider } from '@/context/ThemeContext';
+import { ProductProvider } from '@/context/ProductContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DashboardSidebar from '@/components/DashboardSidebar';
@@ -51,18 +52,20 @@ export default function RootLayout({
               <WishlistProvider>
                 <CartProvider>
                   <OrderProvider>
-                    <InboxProvider>
-                      <SidebarProvider>
-                        <div className="app-container">
-                          <DashboardSidebar />
-                          <Header />
-                          <main style={{ flex: 1, paddingBottom: '20px' }}>
-                            {children}
-                          </main>
-                          <Footer />
-                        </div>
-                      </SidebarProvider>
-                    </InboxProvider>
+                    <ProductProvider>
+                      <InboxProvider>
+                        <SidebarProvider>
+                          <div className="app-container">
+                            <DashboardSidebar />
+                            <Header />
+                            <main style={{ flex: 1, paddingBottom: '20px' }}>
+                              {children}
+                            </main>
+                            <Footer />
+                          </div>
+                        </SidebarProvider>
+                      </InboxProvider>
+                    </ProductProvider>
                   </OrderProvider>
                 </CartProvider>
               </WishlistProvider>

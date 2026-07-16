@@ -3,7 +3,7 @@
 import { useState, use } from 'react';
 import { notFound } from 'next/navigation';
 import { SlidersHorizontal, X } from 'lucide-react';
-import { products } from '@/data/products';
+import { useProducts } from '@/context/ProductContext';
 import ProductCard from '@/components/ProductCard';
 import styles from './page.module.css';
 
@@ -12,9 +12,19 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
   const unwrappedParams = use(params);
   const category = unwrappedParams.slug;
   
+  const { products, loading } = useProducts();
+
   // Basic validation
   if (!['all', 'shoes', 'apparel', 'watches'].includes(category)) {
     notFound();
+  }
+
+  if (loading) {
+    return (
+      <div className={styles.container} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ color: 'var(--text-muted)' }}>Loading category...</p>
+      </div>
+    );
   }
 
   const filteredProducts = category === 'all' 
