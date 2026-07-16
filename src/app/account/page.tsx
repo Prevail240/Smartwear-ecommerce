@@ -15,6 +15,7 @@ export default function AccountPage() {
   const router = useRouter();
 
   const [isAnalyticsExpanded, setIsAnalyticsExpanded] = useState(false);
+  const [isSettingsExpanded, setIsSettingsExpanded] = useState(false);
   const [analytics, setAnalytics] = useState({
     totalOrders: 0,
     successfulDeliveries: 0,
@@ -208,18 +209,27 @@ export default function AccountPage() {
           <Palette size={24} className={styles.icon} />
           <span>Appearance Settings</span>
         </Link>
-        <Link href="/account" className={styles.menuItem}>
+        <button className={styles.menuItem} onClick={() => setIsSettingsExpanded(!isSettingsExpanded)}>
           <Settings size={24} className={styles.icon} />
           <span>Account Settings</span>
-        </Link>
-        <button className={styles.menuItem} onClick={handleResetPassword}>
-          <Key size={24} className={styles.icon} />
-          <span>Reset Password</span>
+          <div style={{ marginLeft: 'auto', display: 'flex' }}>
+            {isSettingsExpanded ? <ChevronUp size={20} color="var(--text-muted)" /> : <ChevronDown size={20} color="var(--text-muted)" />}
+          </div>
         </button>
-        <button className={styles.menuItem} onClick={handleResetEmail}>
-          <Mail size={24} className={styles.icon} />
-          <span>Reset Email</span>
-        </button>
+
+        {isSettingsExpanded && (
+          <div className={styles.settingsSubMenu}>
+            <button className={styles.subMenuItem} onClick={handleResetPassword}>
+              <Key size={20} className={styles.icon} />
+              <span>Reset Password</span>
+            </button>
+            <button className={styles.subMenuItem} onClick={handleResetEmail}>
+              <Mail size={20} className={styles.icon} />
+              <span>Reset Email</span>
+            </button>
+          </div>
+        )}
+
         <button className={styles.menuItem} onClick={handleLogout}>
           <LogOut size={24} className={styles.icon} />
           <span>Sign Out</span>

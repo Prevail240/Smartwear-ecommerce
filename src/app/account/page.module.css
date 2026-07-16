@@ -147,6 +147,8 @@
   color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
+  font-family: inherit;
+  font-size: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease;
   width: 100%;
@@ -166,5 +168,41 @@
 }
 
 .menuItem:hover .icon {
+  color: var(--accent-color);
+}
+
+.settingsSubMenu {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: -8px;
+  margin-bottom: 8px;
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+.subMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.subMenuItem:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.subMenuItem:hover .icon {
   color: var(--accent-color);
 }
