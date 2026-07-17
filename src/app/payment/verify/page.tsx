@@ -45,7 +45,15 @@ function PaymentVerifyContent() {
 
     const verify = async () => {
       try {
-        const result = await verifyPayment(tx_ref);
+        if (!user) {
+          setError('You must be logged in to verify payment.');
+          return;
+        }
+
+        const result = await verifyPayment({
+          tx_ref: tx_ref,
+          userId: user.uid
+        });
         if (result.success && result.orderId) {
           
           // Construct order object from cart

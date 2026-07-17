@@ -44,7 +44,11 @@ function CheckoutContent() {
     setIsProcessing(true);
     try {
       const email = formData.get('email') as string || 'customer@example.com';
-      const result = await initiatePayment(FINAL_TOTAL, email);
+      const result = await initiatePayment({
+        amount: FINAL_TOTAL,
+        email: email,
+        userId: user.uid
+      });
       if (result.success && result.paymentUrl) {
         router.push(result.paymentUrl);
       } else {
