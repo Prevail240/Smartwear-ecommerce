@@ -110,7 +110,8 @@ function PaymentVerifyContent() {
               orderId: newOrder.id,
               orderCode: orderCode,
               total: FINAL_TOTAL,
-              items: newOrderItems.map(i => ({ name: i.name, price: i.price, image: i.image }))
+              items: newOrderItems.map(i => ({ name: i.name, price: i.price, image: i.image })),
+              userId: user.uid
             });
           }
 
