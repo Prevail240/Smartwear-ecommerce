@@ -48,28 +48,16 @@ export const CurrencyProvider = ({ children }: { children: React.ReactNode }) =>
           return;
         }
 
-        // 2. Fetch Exchange Rate with 24-Hour Caching
-        const cacheKey = `exchange_rate_${targetCurrency.code}`;
-        const cacheTimeKey = `exchange_rate_time_${targetCurrency.code}`;
-        const cachedRate = localStorage.getItem(cacheKey);
-        const cachedTime = localStorage.getItem(cacheTimeKey);
-
-        const now = new Date().getTime();
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-
-        if (cachedRate && cachedTime && (now - parseInt(cachedTime) < TWENTY_FOUR_HOURS)) {
-          setExchangeRate(parseFloat(cachedRate));
-        } else {
-          // Fetch from exchangerate-api (Base NGN)
-          const rateRes = await fetch('https://open.er-api.com/v6/latest/NGN');
-          const rateData = await rateRes.json();
-          const rate = rateData.rates[targetCurrency.code];
-          
-          if (rate) {
-            setExchangeRate(rate);
-            localStorage.setItem(cacheKey, rate.toString());
-            localStorage.setItem(cacheTimeKey, now.toString());
-          }
+        // 2. Fetch Exchange Rate securely via our Next.js API route
+        // The API route handles the 24-hour caching on the server side
+        const rateRes = await fetch('/api/rates');
+        if (!rateRes.ok) throw new Error('Failed to fetch rates from local API');
+        
+        const rateData = await rateRes.json();
+        const rate = rateData.rates?.[targetCurrency.code];
+        
+        if (rate) {
+          setExchangeRate(rate);
         }
       } catch (error) {
         console.error("Failed to initialize currency:", error);
