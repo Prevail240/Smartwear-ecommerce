@@ -30,14 +30,16 @@
 
 .productGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
   .productGrid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 20px;
   }
 }
 
