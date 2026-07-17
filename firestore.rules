@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ---------------------------------------------------------
+    // USERS COLLECTION
+    // A user can only read, update, or create their own profile document.
+    // The document ID must exactly match their authentication UID.
+    // ---------------------------------------------------------
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // ---------------------------------------------------------
+    // ORDERS COLLECTION
+    // Strict ownership checks for order processing and history.
+    // ---------------------------------------------------------
+    match /orders/{orderId} {
+      // Create: Allowed ONLY if the 'userId' field in the incoming data matches the logged-in user's UID
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      
+      // Read/Update/Delete: Allowed ONLY if the existing document's 'userId' field matches the logged-in user's UID
+      allow read, update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+    
+    // Reject everything else by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
