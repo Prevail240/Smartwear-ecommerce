@@ -41,6 +41,7 @@ function CheckoutContent() {
   if (!user) return null;
 
   async function handleCheckout(formData: FormData) {
+    if (!user) return;
     setIsProcessing(true);
     try {
       const email = formData.get('email') as string || 'customer@example.com';
