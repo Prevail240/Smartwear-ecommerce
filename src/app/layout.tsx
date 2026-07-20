@@ -10,7 +10,7 @@ import { InboxProvider } from '@/context/InboxContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { ProductProvider } from '@/context/ProductContext';
 import { CurrencyProvider } from '@/context/CurrencyContext';
-import Header from '@/components/Header';
+import Header45XL from '@/components/Header45XL';
 import Footer from '@/components/Footer';
 import DashboardSidebar from '@/components/DashboardSidebar';
 
@@ -45,6 +45,10 @@ export default function RootLayout({
             } catch (e) {}
           `
         }} />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body suppressHydrationWarning>
         <ThemeProvider>
@@ -59,7 +63,7 @@ export default function RootLayout({
                           <SidebarProvider>
                             <div className="app-container">
                               <DashboardSidebar />
-                              <Header />
+                              <Header45XL />
                             <main style={{ flex: 1, paddingBottom: '20px' }}>
                               {children}
                             </main>
