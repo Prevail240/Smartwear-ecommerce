@@ -54,7 +54,7 @@ function SearchBar() {
   };
 
   return (
-    <div ref={containerRef} className="relative flex-1 max-w-xs lg:max-w-sm mx-3 hidden sm:block">
+    <div ref={containerRef} className="relative flex-1 mx-3">
       <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-white/60" />
       <input
         type="text"
@@ -112,7 +112,7 @@ export default function Header45XL() {
   return (
     <header className="sticky top-0 z-50">
       {/* ── Top Navigation Bar ── */}
-      <div className="bg-[#4A0E8F] px-3 py-2.5 flex items-center gap-2">
+      <div className="bg-[#4A0E8F] px-4 py-2.5 flex items-center gap-3 w-full">
         {/* Hamburger Menu */}
         <button
           onClick={openSidebar}
@@ -160,7 +160,7 @@ export default function Header45XL() {
       </div>
 
       {/* ── Category Navigation Sub-bar ── */}
-      <nav className="bg-[#350A6E] flex items-center justify-center gap-5 md:gap-8 py-1.5 px-4 overflow-x-auto">
+      <nav className="bg-[#350A6E] flex items-center justify-center gap-6 md:gap-12 py-2 px-4 w-full">
         {categories.map(cat => (
           <Link
             key={cat.label}
