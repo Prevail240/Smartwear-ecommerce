@@ -17,12 +17,10 @@ const OrderContext = createContext<OrderContextType | undefined>(undefined);
 export function OrderProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!user) {
       setOrders([]);
-      setLoading(false);
       return;
     }
 
@@ -39,8 +37,6 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         setOrders(fetchedOrders);
       } catch (error) {
         console.error("Error fetching orders:", error);
-      } finally {
-        setLoading(false);
       }
     };
 

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { User, Package, Heart, CreditCard, LogOut, BarChart2, ChevronDown, ChevronUp, Palette, Settings, Key, Mail } from 'lucide-react';
+import { Package, Heart, CreditCard, LogOut, BarChart2, ChevronDown, ChevronUp, Palette, Settings, Key, Mail } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -34,8 +34,8 @@ export default function AccountPage() {
           const ordersRef = collection(db, 'users', user.uid, 'orders');
           const ordersSnap = await getDocs(ordersRef);
           
-          let totalOrders = ordersSnap.size;
-          let successfulDeliveries = totalOrders; // Simulated as all successful
+          const totalOrders = ordersSnap.size;
+          const successfulDeliveries = totalOrders; // Simulated as all successful
           
           const categoryCounts: Record<string, number> = {};
           

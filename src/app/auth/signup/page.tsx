@@ -146,7 +146,7 @@ export default function SignUpPage() {
             <Loader2 size={48} className={styles.spinner} />
             <h2 className={styles.waitingTitle}>Verify Your Email</h2>
             <p className={styles.waitingText}>
-              We've sent a verification link to <strong>{email}</strong>. 
+              We&apos;ve sent a verification link to <strong>{email}</strong>. 
               Please check your inbox (and spam folder) and click the link to activate your account.
               <br/><br/>
               This page will automatically redirect you once your email is verified!

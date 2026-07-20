@@ -22,7 +22,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   
   const { user } = useAuth();
   const { formatPrice } = useCurrency();
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const activeImageIndex = 0;
   const [selectedSize, setSelectedSize] = useState(product?.sizes[0] || 'One Size');
 
   useEffect(() => {
@@ -30,23 +30,6 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       setSelectedSize(product.sizes[0]);
     }
   }, [product, selectedSize]);
-
-  if (loading) {
-    return (
-      <div className={styles.container} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ color: 'var(--text-muted)' }}>Loading product...</p>
-      </div>
-    );
-  }
-
-  if (!product && !loading) {
-    notFound();
-  }
-
-  // TypeScript needs this explicit return because it doesn't know notFound() throws
-  if (!product) {
-    return null;
-  }
 
   // Track product view in Firestore for real-time analytics
   useEffect(() => {
@@ -75,6 +58,23 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
       trackView();
     }
   }, [user?.uid, product]);
+
+  if (loading) {
+    return (
+      <div className={styles.container} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ color: 'var(--text-muted)' }}>Loading product...</p>
+      </div>
+    );
+  }
+
+  if (!product && !loading) {
+    notFound();
+  }
+
+  // TypeScript needs this explicit return because it doesn't know notFound() throws
+  if (!product) {
+    return null;
+  }
 
   const handleAddToCart = () => {
     if (!product) return;

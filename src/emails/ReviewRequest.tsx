@@ -25,7 +25,7 @@ export const ReviewRequest = ({
   return (
     <Html>
       <Head />
-      <Preview>Your Smartwear package has arrived! We'd love your feedback.</Preview>
+      <Preview>Your Smartwear package has arrived! We&apos;d love your feedback.</Preview>
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>Package Delivered! 🎉</Heading>
@@ -36,7 +36,7 @@ export const ReviewRequest = ({
           </Text>
 
           <Text style={text}>
-            We'd love to hear what you think about the products. Your feedback helps us 
+            We&apos;d love to hear what you think about the products. Your feedback helps us 
             continue to improve and helps other customers make informed decisions.
           </Text>
 

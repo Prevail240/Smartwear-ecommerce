@@ -20,7 +20,7 @@ export default function OrdersPage() {
   };
 
   const getFilteredItems = () => {
-    let items: { orderId: string; item: OrderItem }[] = [];
+    const items: { orderId: string; item: OrderItem }[] = [];
     orders.forEach(order => {
       order.items.forEach(item => {
         const isOngoingOrDelivered = ['PROCESSING', 'AVAILABLE FOR PICKUP', 'EN-ROUTE', 'DELIVERED'].includes(item.status);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useInbox } from '@/context/InboxContext';
-import { Mail, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Mail, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import styles from './page.module.css';
 

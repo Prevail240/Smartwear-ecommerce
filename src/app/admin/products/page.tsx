@@ -5,7 +5,7 @@ import AdminRoute from '@/components/AdminRoute';
 import { useProducts } from '@/context/ProductContext';
 import { useToast } from '@/context/ToastContext';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
-import { Plus, Trash2, X, Edit } from 'lucide-react';
+import { Plus, Trash2, X } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { doc, setDoc, deleteDoc, collection } from 'firebase/firestore';
 import { Product, ProductCategory } from '@/data/products';
@@ -74,7 +74,7 @@ export default function AdminProducts() {
       try {
         await deleteDoc(doc(db, 'products', id));
         showToast('Product deleted!', 'success');
-      } catch (err) {
+      } catch {
         showToast('Failed to delete product', 'error');
       }
     }

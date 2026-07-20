@@ -14,7 +14,7 @@ const steps = ['Shipping', 'Payment', 'Review'];
 function CheckoutContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { cartTotal, clearCart } = useCart();
+  const { cart, cartTotal } = useCart();
   const { user } = useAuth();
   const { formatPrice } = useCurrency();
   const [currentStep, setCurrentStep] = useState(1);

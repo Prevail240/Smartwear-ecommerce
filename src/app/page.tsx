@@ -22,16 +22,6 @@ export default function Home() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className={styles.container} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ color: 'var(--text-muted)' }}>Loading products...</p>
-      </div>
-    );
-  }
-
-  const newArrivals = products.slice(0, 4);
-
   useEffect(() => {
     // Hero Animations
     animate('.hero-animate', 
@@ -47,6 +37,14 @@ export default function Home() {
       );
     });
   }, [loading]);
+
+  if (loading) {
+    return (
+      <div className={styles.container} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ color: 'var(--text-muted)' }}>Loading products...</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

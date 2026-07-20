@@ -23,7 +23,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
       if (stored) {
         setWishlist(JSON.parse(stored));
       }
-    } catch (e) {
+    } catch {
       console.error("Failed to parse wishlist from local storage");
     }
     setIsInitialized(true);

@@ -15,10 +15,6 @@ export default function AdminOrders() {
   const [animationParent] = useAutoAnimate<HTMLTableSectionElement>();
   const { showToast } = useToast();
 
-  useEffect(() => {
-    fetchOrders();
-  }, []);
-
   const fetchOrders = async () => {
     try {
       const snapshot = await getDocs(collection(db, 'orders'));
@@ -33,6 +29,10 @@ export default function AdminOrders() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
   const handleStatusChange = async (orderId: string, itemId: string, newStatus: OrderStatus) => {
     try {

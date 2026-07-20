@@ -18,19 +18,6 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
   
   const { products, loading } = useProducts();
 
-  // Basic validation
-  if (!['all', 'shoes', 'apparel', 'watches'].includes(category)) {
-    notFound();
-  }
-
-  if (loading) {
-    return (
-      <div className={styles.container} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ color: 'var(--text-muted)' }}>Loading category...</p>
-      </div>
-    );
-  }
-
   const filteredProducts = category === 'all' 
     ? products 
     : products.filter(p => p.category === category);
@@ -43,7 +30,20 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
         { delay: stagger(0.08), duration: 0.5, ease: [0.25, 1, 0.5, 1] }
       );
     }
-  }, [loading, category]);
+  }, [loading, category, filteredProducts.length]);
+
+  // Basic validation
+  if (!['all', 'shoes', 'apparel', 'watches'].includes(category)) {
+    notFound();
+  }
+
+  if (loading) {
+    return (
+      <div className={styles.container} style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ color: 'var(--text-muted)' }}>Loading category...</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

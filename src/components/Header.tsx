@@ -88,7 +88,7 @@ function SearchBar({ isMobile = false }: { isMobile?: boolean }) {
             ))
           ) : (
             <div className={styles.dropdownEmpty}>
-              No results found for "{query}".<br />
+              No results found for &quot;{query}&quot;.<br />
               <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>Please check if your spelling is correct.</span>
             </div>
           )}

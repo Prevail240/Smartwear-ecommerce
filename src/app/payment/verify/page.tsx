@@ -131,7 +131,7 @@ function PaymentVerifyContent() {
           setError(result.error || 'Verification failed');
           setTimeout(() => router.push('/account/checkout?error=verification_failed'), 3000);
         }
-      } catch (err) {
+      } catch {
         setError('An error occurred during verification.');
         setTimeout(() => router.push('/account/checkout?error=server_error'), 3000);
       }

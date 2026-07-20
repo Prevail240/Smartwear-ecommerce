@@ -43,7 +43,7 @@ export async function initiatePayment(input: unknown) {
     const paymentUrl = `/pay/secure-checkout?tx_ref=${tx_ref}&amount=${amount}&email=${encodeURIComponent(email)}`;
     
     return { success: true, paymentUrl, tx_ref };
-  } catch (error) {
+  } catch {
     // Catch errors safely so we don't leak secrets
     return { success: false, error: 'Failed to process request.' };
   }
@@ -55,7 +55,7 @@ export async function verifyPayment(input: unknown) {
   if (!result.success) {
     return { success: false, error: 'Invalid data sent.' };
   }
-  const { tx_ref, userId } = result.data;
+  const { userId } = result.data;
   
   // 1. The Bouncer
   if (!userId) {
@@ -71,7 +71,7 @@ export async function verifyPayment(input: unknown) {
     
     const orderId = `ORD-${Math.floor(Math.random() * 1000000)}`;
     return { success: true, orderId };
-  } catch (error) {
+  } catch {
     // Catch errors safely
     return { success: false, error: 'Failed to process request.' };
   }
